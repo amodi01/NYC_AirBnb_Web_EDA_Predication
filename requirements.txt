@@ -43,7 +43,7 @@ google-auth-oauthlib==0.4.2
 grpcio==1.35.0
 idna==2.10
 ipykernel==5.4.2
-ipython==7.19.0
+ipython
 ipython-genutils==0.2.0
 ipywidgets==7.6.2
 jedi==0.17.2
