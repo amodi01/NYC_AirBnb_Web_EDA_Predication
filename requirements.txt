@@ -45,7 +45,7 @@ idna==2.10
 ipykernel==5.4.2
 ipython
 ipython-genutils
-ipywidgets=
+
 jedi==0.17.2
 Jinja2==2.11.2
 joblib==1.0.0
