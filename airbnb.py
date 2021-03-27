@@ -1,12 +1,10 @@
-import numpy as np
 import pandas as pd
-import pickle5 as pickle
 import pandas as pd
 import streamlit as st
 import plotly.express as px
 import SessionState
 import preditc
-import py7zr
+
 
 my_page = st.sidebar.radio('Select Option Below :', ['Data Visualization', 'Predictions', 'Raw Data'])
 
@@ -22,17 +20,12 @@ data_load_state = st.text("")
 # Reading Pickle File
 
 
+@st.cache
 def load_data(path):
     #loadgzip(path)
     #with open(path, 'rb') as f:
     data = pd.read_pickle(path)
     return data
-
-
-def loadgzip(path):
-    file=path +".7z"
-    with py7zr.SevenZipFile(file, mode="w") as z:
-        z.writeall(_DataFolderPath)
 
 
 # Region Ends Global Methods
@@ -130,7 +123,7 @@ else:
             dataForPrediction = _DF_Comeplete_Data.iloc[min:max]
             result = preditc.predict(dataForPrediction)
             # data_frames = [dataForPrediction,pd.DataFrame( result)]
-            st.sidebar.markdown('Below Are The  Predictions For Selected Recrds : ')
+            st.sidebar.markdown('Below Are The  Predictions For Selected Records : ')
             st.write(result)
             st.balloons()
             # st.success('Your loan is {}'.format(result))
@@ -153,7 +146,17 @@ else:
         bathtext=st.selectbox("Bathrooms Availability", bathoormtext_list)
         aments = st.selectbox("Amenities", amen_list)
         avail_list = list(range(1, 366))
-        avail = st.selectbox("Availability", avail_list)
+        avail = st.selectbox("Availability pf Days (1-365) ", avail_list)
+        arate = st.text_input('Host Acceptance Rate (1-10) :')
+        lcount=st.text_input('Total Listings of Host : (1-100):')
+        price = st.text_input('Average Price in April -2020 :')
+        if st.button("Predict"):
+            result = preditc.predictSingleRecord(desc, nhood, host_since,  accomdates, bathtext, aments, avail,
+                        arate, lcount, price)
+            # data_frames = [dataForPrediction,pd.DataFrame( result)]
+            st.sidebar.markdown('Below Are The  Predictions For Selected Records : ')
+            st.write(result)
+            st.balloons()
 # https://towardsdatascience.com/streamlit-101-an-in-depth-introduction-fc8aad9492f2
 # https://medium.com/@ansjin/how-to-create-and-deploy-data-exploration-web-app-easily-using-python-a03c4b8a1f3e
 
