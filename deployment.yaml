@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airbnb
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: airbnbapp
+  template:
+    metadata:
+      labels:
+        app: airbnbapp
+    spec:
+      containers:
+      - name: airbnb-app
+        image: gcr.io/amodi/airbnbapp
+        ports:
+        - containerPort: 8501
