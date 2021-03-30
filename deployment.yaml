@@ -13,7 +13,7 @@ spec:
         app: airbnbapp
     spec:
       containers:
-      - name: airbnb-app
-        image: gcr.io/amodi/airbnbapp
+      - name: airbnbapp
+        image: gcr.io/airbnb/airbnbapp
         ports:
         - containerPort: 8501

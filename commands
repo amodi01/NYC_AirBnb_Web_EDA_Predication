@@ -1,0 +1,11 @@
+gcloud container clusters get-credentials airbnbcluster --region us-central1 --project airbnb04
+
+gcloud builds submit --tag gcr.io/amodi/airbnbapp .
+
+kubectl apply -f deploymnet.yaml
+kubectl getdplyments
+kubectl getpods
+kubectl apply -f service.yaml
+kubectl getservices
+
+gcloud container clusters get-credentials autopilot-airbnb-1 --region us-central1 --project airbnb04
